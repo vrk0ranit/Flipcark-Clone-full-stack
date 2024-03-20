@@ -1,9 +1,12 @@
-import React,{useState} from 'react'
+import React,{useState, useContext} from 'react'
 import { Box, Button, Typography, styled } from '@mui/material'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
+import { DataContext  } from '../../context/DataProvider';
+
 //components
 import LoginDialog from '../login/LoginDialog';
+import Profile from './Profile';
 
 const Wrapper = styled(Box)`
  display: flex;
@@ -18,13 +21,21 @@ const Container =  styled(Box)`
  display: flex;
 `;
 const LoginButton = styled(Button)`
- color: #2874f0;
+    color: '#2874f0',
+    background: '#FFFFFF',
+    textTransform: 'none',
+    fontWeight: 600,
+    borderRadius: 2,
+    padding: '5px 40px',
+    height: 32,
+    boxShadow: 'none',
 `
 
 
 const CustomButton = () => {
     
     const [open, setOpen] = useState(false);
+    const { account, setAccount }= useContext(DataContext)
 
     const openDialog = () => {
         setOpen(true)
@@ -32,18 +43,11 @@ const CustomButton = () => {
 
     return (
         <Wrapper>
-            <Button onClick={() => openDialog()} style={{ 
-                color: '#2874f0', 
-                background: '#ffffff', 
-                textTransform: 'none',
-                 padding: '5px 40px',
-                 borderRadius: 2,
-                 boxShadow: 'none',
-                 fontWeight: 600,
-                 height: '32px',
-                 }} variant='contained'>
-                Login
-            </Button>
+            {
+                account ? <Profile account={account} setAccount={setAccount}/>
+                 :
+                 <LoginButton variant="contained" onClick={() => openDialog()}>Login</LoginButton>
+            }
             <Typography style={{ marginTop: 3, width: 135 }}>Become a Seller</Typography>
             <Typography style={{ marginTop: 3 }}>More</Typography>
 
