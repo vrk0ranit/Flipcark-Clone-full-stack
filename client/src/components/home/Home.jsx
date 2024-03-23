@@ -4,6 +4,9 @@ import React,{ useEffect } from 'react'
 
 import NavBar from './NavBar'
 import Banner from './Banner'
+import Slide from './Slide'
+import MidSlide from './MidSlide'
+import MidSection from './MidSection'
 
 import { Box ,styled } from '@mui/material'
 
@@ -17,7 +20,7 @@ const Component = styled(Box)`
 
 const Home = () => {
 
-   useSelector(state => state.getProducts)
+  const { products } = useSelector(state => state.getProducts)
   
 
   const dispatch = useDispatch()
@@ -31,6 +34,15 @@ const Home = () => {
       <NavBar/>
       <Component>
         <Banner/>
+        <MidSlide products={products} title='Deal of the Day' timer={true}/>
+        <MidSection/>
+        <Slide products={products} title='Discounts for You' timer={false}/>
+        <Slide products={products} title='Suggested Items' timer={false}/>
+        <Slide products={products} title='Top Selection' timer={false}/>
+        <Slide products={products} title='Recomemded Items' timer={false}/>
+        <Slide products={products} title='Trending Offers' timer={false}/>
+        <Slide products={products} title="Season's top picks" timer={false}/>
+        <Slide products={products} title="Top Deal on Accessories" timer={false}/>
       </Component>
      
     </>
