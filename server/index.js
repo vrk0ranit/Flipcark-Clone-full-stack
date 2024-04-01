@@ -12,8 +12,11 @@ import Router  from './routes/route.js';
 const app = express();
 
 dotenv.config();
+app.use(cors({
+    origin: 'https://mini-flipcark-clone.vercel.app'
+  }));
 
-app.use(cors());
+
 app.use(bodyParser.json({ extended: true}))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use('/', Router)
