@@ -13,7 +13,7 @@ const app = express();
 
 dotenv.config();
 app.use(cors({
-    origin: 'https://mini-flipcark-clone.vercel.app'
+    origin: `https://mini-flipcark-clone-api.vercel.app`
   }));
 
 
