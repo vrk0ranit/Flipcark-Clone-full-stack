@@ -11,11 +11,13 @@ import Profile from './Profile';
 const Wrapper = styled(Box)(({ theme }) => ({
     display: 'flex',
     margin: '0 3% 0 auto',
+    // justifyContent: 'space-between',
     '& > *': {
-    marginRight: '40px',
+    marginRight: '40px !important',
     fontSize: '16px',
     alignItems: 'center',
-    justifyContent: 'space-between'
+    // justifyContent: 'space-between',
+    
  },
  [theme.breakpoints.down('md')]: {
     display: 'block'
