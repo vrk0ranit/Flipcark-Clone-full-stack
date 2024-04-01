@@ -5,11 +5,12 @@ import { Grid, Box, Typography, Button, styled } from '@mui/material'
 //components
 import CartItem from './CartItem'
 import TotalView from './TotalView'
+import EmptyCart from './EmptyCart'
 
 const Container = styled(Grid)(({ theme }) => ({
     padding: '30px 135px',
     display: 'flex',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
         padding: '15px 0'
     }
 }));
@@ -32,7 +33,12 @@ const StyledButton = styled(Button)`
     width: 250px;
     height: 51px;
 `;
-
+const LeftComponent = styled(Grid)(({ theme }) => ({
+    paddingRight: 15,
+    [theme.breakpoints.down('md')]: {
+        marginBottom: 15
+    }
+}));
 const Cart = () => {
     const { cartItems } = useSelector(state => state.cart)
   return (
@@ -40,7 +46,7 @@ const Cart = () => {
      {
         cartItems.length ? 
         <Container container>
-            <Grid item lg={9} md={9} sm={12} xs={12}>
+            <LeftComponent item lg={9} md={9} sm={12} xs={12}>
                 <Header>
                    <Typography>My Cart({cartItems.length})</Typography>
                 </Header>
@@ -51,12 +57,12 @@ const Cart = () => {
                 <ButtonWrapper>
                     <StyledButton>Plaace Order</StyledButton>
                 </ButtonWrapper>
-            </Grid>
+            </LeftComponent>
             <Grid item lg={3} md={3} sm={12} xs={12}>
                 <TotalView cartItems={cartItems}/>
             </Grid>
         </Container>
-        : <div>Empty</div>
+        : <EmptyCart/>
      }
     </>
   )

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Box, Typography, styled } from '@mui/material'
 
 const Header = styled(Box)`
@@ -39,6 +39,23 @@ const Discount = styled(Typography)`
 `
 
 const TotalView = ({ cartItems }) => {
+   const [price, setPrice ] = useState(0);
+   const [ discount, setDiscount ] = useState(0);
+
+   useEffect(() => {
+     totalAmount();
+   },[cartItems])
+
+   const totalAmount = () => {
+     let price = 0, discount = 0;
+     cartItems.map(item => {
+        price += item.price.mrp;
+        discount += (item.price.mrp - item.price.cost);
+     });
+     setPrice(price);
+     setDiscount(discount)
+   }
+
   return (
     <Box>
         <Header>
@@ -46,18 +63,18 @@ const TotalView = ({ cartItems }) => {
         </Header>
         <Container>
             <Typography>Price ({cartItems?.length} item)
-             <Price component="span">₹100</Price>
+             <Price component="span">₹{price}</Price>
             </Typography>
             <Typography>Discount
-             <Price component="span">-₹100</Price>
+             <Price component="span">-₹{discount}</Price>
             </Typography>
             <Typography>Delivery Charges
-             <Price component="span">₹100</Price>
+             <Price component="span">₹40</Price>
             </Typography>
             <Typography component='h6'>Total Amount
-             <Price component="span">₹100</Price>
+             <Price component="span">₹{price - discount + 40 }</Price>
             </Typography>
-            <Discount>You Will Save ₹100 on this order</Discount>
+            <Discount>You Will Save ₹{discount - 40} on this order</Discount>
         </Container>
     </Box>
   )
