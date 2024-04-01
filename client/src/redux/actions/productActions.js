@@ -2,7 +2,7 @@
 import axios from 'axios'
 import * as actionTypes from '../constants/productConstant';
 
-const URL = `http://localhost:8000`
+const URL = `http://mini-flipcark-clone-api.vercel.app`
 
 export const getProducts = () => async (dispatch) => {
     try {
