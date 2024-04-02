@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { addToCart } from '../../redux/actions/cartAction'
 
 
+
 const LeftContainer = styled(Box)(({ theme }) => ({
     minWidth: '40%',
     padding: '40px 0 0 80px',
@@ -43,6 +44,15 @@ const ActionItem = ({ product }) => {
         dispatch(addToCart(id, quantity));
         navigate('/cart');
     }
+
+    const buyNow = async () => {
+    //    const stripe = await loadStripe("pk_test_51P16H7SJIf0Hm6Uqk4IajA9qJS3xxdTi5JiKLuojsPsLzZqAjVoFUrj4lhaUt664mtOdHoILsWpVqwGO5Oy40LOE00QAci3uws");
+
+    //    const headers = {
+    //     "Content-Type": "application/json"
+    //    }
+    //    const response = await fetch(`$url`)
+    }
     return (
         <LeftContainer>
             <Box style={{
@@ -53,7 +63,7 @@ const ActionItem = ({ product }) => {
                 <Image src={product.url} alt="product" />
             </Box>
             <StyledButton variant='contained' onClick={() => addItemToCart()} style={{ marginRight: 10, background: '#ff9f00' }} ><Cart />Add To Cart</StyledButton>
-            <StyledButton variant='contained' style={{ background: '#fb641b' }}><Flash />Buy Now</StyledButton>
+            <StyledButton variant='contained' onClick={() => buyNow()} style={{ background: '#fb641b' }}><Flash />Buy Now</StyledButton>
         </LeftContainer>
     )
 }
