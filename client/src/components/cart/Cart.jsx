@@ -55,7 +55,7 @@ const Cart = () => {
                             ))
                 }
                 <ButtonWrapper>
-                    <StyledButton>Plaace Order</StyledButton>
+                    <StyledButton>Place Order</StyledButton>
                 </ButtonWrapper>
             </LeftComponent>
             <Grid item lg={3} md={3} sm={12} xs={12}>
